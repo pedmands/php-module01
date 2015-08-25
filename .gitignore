@@ -1,0 +1,9 @@
+*.jpg
+*.png
+hanselandpetal/images/*
+handp_final/
+handp_check/
+.htaccess
+.user.ini
+config.php
+Mac_only/
