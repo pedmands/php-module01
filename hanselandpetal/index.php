@@ -1,8 +1,8 @@
 <?php
 date_default_timezone_set('America/New_York');
-$month = date('M');
-$month = strtolower($month);
-$specials_month = date('n');
+$monthName = date('M');
+$monthName = strtolower($monthName); // stores the first three letters of the current month in lower case (i.e. 'jan')
+$monthNumber = date('n');
 $specials_alt = array(
     'January special: Cacti galore',
     'February special: Flowers and hearts for Valentines',
@@ -17,6 +17,24 @@ $specials_alt = array(
     'November special: Bonsai with rock',
     'December special: Dried flowers for decoration'
      );
+$features = [
+    'winter' => 'Beautiful arrangements for any occasion.',
+    'spring' => 'It must be spring! Delicate daffodils have arrived.',
+    'summer' => "It's summer, and we're in the pink!",
+    'autumn' => "Summer's over, but our flowers are still a riot of colors."
+    ];
+$seasons = array(
+    'winter' => array('dec', 'jan', 'feb'),
+    'spring' => array('mar', 'apr', 'may'),
+    'summer' => array('jun', 'jul', 'aug'),
+    'autumn' => array('sep', 'oct', 'nov')
+    );
+foreach ($seasons as $key => $months) {
+    if (in_array($monthName, $months)) {
+        $season = $key;
+        break;
+    } //if
+} //foreach
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +54,11 @@ $specials_alt = array(
             <h1>Beautiful Flowers, Artfully Arranged</h1>
             <div id="feature" class="pull_out lg_margin">
                 <div class="inner">
-                    <p class="overlay large">Beautiful arrangements for any occasion.</p>
+                    <p class="overlay large">
+                    <?php echo $features[$season]; ?>
+                    </p>
                     <p class="overlay price">Starting at $45.95</p>
-                    <img src="images/980_white_rose_mix_166610678.jpg" alt="White Rose Arrangement" height="410" width="980"> </div>
+                    <img src="images/feature_<?php echo $season ?>.jpg" alt="Seasonal Flower Arrangement" height="410" width="980"> </div>
             </div>
             <div class="section">
                 <div class="title clearfix">
@@ -101,7 +121,7 @@ $specials_alt = array(
                         <img src="images/450_2_maidenhair_fern_166585539.jpg" alt="Maidenhair Fern" height="200" width="450"> </a> <a href="#" class="tile border">
                         <p class="overlay">Seasonal Specials</p>
                         <p class="overlay price">Starting at $24.95</p>
-                        <img src="images/special_<?php echo $month; ?>.jpg" alt="<?php echo $specials_alt[$specials_month-1]; ?>" height="200" width="450"> </a> </li>
+                        <img src="images/special_<?php echo $monthName; ?>.jpg" alt="<?php echo $specials_alt[$monthNumber-1]; ?>" height="200" width="450"> </a> </li>
                 </ul>
             </div>
         </div>
