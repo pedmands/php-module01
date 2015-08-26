@@ -1,22 +1,5 @@
-<?php 
-if (isset($_POST['bouquet'])) {
-
-    $color = [];
-    $quantity = [];
-    $image = [];
-
-    foreach ($_POST as $key => $value) {
-        if (strpos($key, 'color_') === 0) {
-            $color[substr($key, 6)] = $value;
-        } //checks if it begins with color_
-        elseif (strpos($key, 'qty_') === 0) {
-            $quantity[substr($key, 4)] = $value;
-        } //if " quantity
-        if (strpos($key, 'image_') === 0) {
-            $image[substr($key, 6)] = $value;
-        } //if " image
-    } //foreach
-
+<?php
+session_start(); // gives us access to a session and $_SESSION variables.
 // hardcode prices:
     $price = [    
         'Calla_Lilies' => 3,
@@ -32,7 +15,26 @@ if (isset($_POST['bouquet'])) {
         'Lilac' => 4,
         'Daisies' => 1
     ];
+
+if (isset($_POST['bouquet'])) {
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'color_') === 0) {
+            $_SESSION['color'][substr($key, 6)] = $value;
+        } //checks if it begins with color_
+        elseif (strpos($key, 'qty_') === 0) {
+            $_SESSION['quantity'][substr($key, 4)] = $value;
+        } //if " quantity
+        if (strpos($key, 'image_') === 0) {
+            $_SESSION['image'][substr($key, 6)] = $value;
+        } //if " image
+    } //foreach
 } //if
+// unset($_SESSION['quantity']['Peruvian_Lillies']);
+if (isset($_POST['cancel'])) {
+    $_SESSION = [];
+    session_destroy();
+} // clear session variables & destroys session if order canceled.
 function getColor($filename) {
     $parts = explode('_', $filename);
     return ucfirst($parts[2]);
@@ -62,7 +64,7 @@ $total = 0;
 </div>
 <div id="col_1" role="main">
     <h1 class="inline_block">Your Order</h1>
-    <?php if (!isset($quantity) || array_sum($quantity) === 0 ) { ?>
+    <?php if (!isset($_SESSION['quantity']) || array_sum($_SESSION['quantity']) === 0 ) { ?>
     <p>Your basket is empty, silly.</p>
     <?php } else { ?>
     <p>Please check the details of your order.</p>
@@ -77,22 +79,22 @@ $total = 0;
         </tr>
 
 <!-- Building the order: -->
-<?php foreach ($quantity AS $flowername => $amount):
+<?php foreach ($_SESSION['quantity'] AS $flowername => $amount):
         if ($amount > 0) :?>
             <tr>
                 <td>
                     <img src="images/<?php
-                    if (isset($color[$flowername])) {
-                        echo $color[$flowername];
+                    if (isset($_SESSION['color'][$flowername])) {
+                        echo $_SESSION['color'][$flowername];
                     } else {
-                        echo $image[$flowername];
+                        echo $_SESSION['image'][$flowername];
                     }
                     ?>.jpg" alt="" width="80" height="80"/>
                 </td>
                 <td><?php echo str_replace('_', ' ', $flowername); ?></td>
                 <td><?php
-                if (isset($color[$flowername])) {
-                    echo getColor($color[$flowername]);
+                if (isset($_SESSION['color'][$flowername])) {
+                    echo getColor($_SESSION['color'][$flowername]);
                 } else {
                     echo '&nbsp;';
                 }
