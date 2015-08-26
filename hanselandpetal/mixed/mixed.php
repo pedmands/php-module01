@@ -62,7 +62,7 @@
         <div class="section">
         <ul class="reset tiles">
         <?php } //end opening tag generation ?>
-            <li> <a href="details.php"> <img src="../images/<?php echo $row['image']; ?>" alt="<?php echo $row['alt']; ?>" height="200" width="200">
+            <li> <a href="details.php?id=<?php echo $row['id']; ?>"> <img src="../images/<?php echo $row['image']; ?>" alt="<?php echo $row['alt']; ?>" height="200" width="200">
                 <h3 class="h4"><?php echo $row['title']; ?></h3>
                 <p class="reset">From $<?php echo $row['price']; ?></p>
                 </a> </li>
