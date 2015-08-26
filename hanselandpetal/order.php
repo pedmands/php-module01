@@ -1,9 +1,38 @@
 <?php 
 if (isset($_POST['bouquet'])) {
-    echo '<pre';
-    print_r($_POST);
-    echo '</pre>';
-}
+
+    $color = [];
+    $quantity = [];
+    $image = [];
+
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'color_') === 0) {
+            $color[substr($key, 6)] = $value;
+        } //checks if it begins with color_
+        elseif (strpos($key, 'qty_') === 0) {
+            $quantity[substr($key, 4)] = $value;
+        } //if " quantity
+        if (strpos($key, 'image_') === 0) {
+            $image[substr($key, 6)] = $value;
+        } //if " image
+    } //foreach
+
+// hardcode prices:
+    $price = [    
+        'Calla_Lilies' => 3,
+        'Sunflowers' => 3,
+        'Iris' => 2,
+        'Peruvian_Lilies' => 2,
+        'Daffodils_(Narcissus)' => 2,
+        'Gerbera_Daisies' => 3,
+        'Dendrobium_Orchid' => 4,
+        'Roses' => 3,
+        'Lilies' => 3,
+        'Tulips' => 2,
+        'Lilac' => 4,
+        'Daisies' => 1
+    ];
+} //if
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,90 +66,19 @@ if (isset($_POST['bouquet'])) {
             <th scope="col">Quantity</th>
             <th scope="col">Cost</th>
         </tr>
-        <tr>
-            <td><img src="images/160_calla_blush_160337318.jpg" alt="" width="80" height="80"/></td>
-            <td>Calla lilies</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_sunflower_146748795.jpg" alt="" width="80" height="80"/></td>
-            <td>Sunflowers</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_iris_purple_121549009.jpg" alt="" width="80" height="80"/></td>
-            <td>Iris</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_alstromeria_87519333.jpg" alt="" width="80" height="80"/></td>
-            <td>Peruvian lilies</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_daffodil_122442732.jpg" alt="" width="80" height="80"/></td>
-            <td>Daffodils (Narcissus)</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_gerbera_purple_146798391.jpg" alt="" width="80" height="80"/></td>
-            <td>Gerbera daisies</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_dendrobium2_152158743.jpg" alt="" width="80" height="80"/></td>
-            <td>Dendrobium orchids</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_rose_red_92974998.jpg" alt="" width="80" height="80"/></td>
-            <td>Roses</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_lily_pink_160102549.jpg" alt="" width="80" height="80"/></td>
-            <td>Lilies</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_tulip_purple_160910481.jpg" alt="" width="80" height="80"/></td>
-            <td>Tulips</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_lilac_157045915.jpg" alt="" width="80" height="80"/></td>
-            <td>Lilac</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
-        <tr>
-            <td><img src="images/160_daisy_white_159207232.jpg" alt="" width="80" height="80"/></td>
-            <td>Daisies</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>$</td>
-        </tr>
+
+<!-- Building the order: -->
+<?php foreach ($quantity as $flowername => $amount): ?>
+    <tr>
+        <td><img src="images/160_calla_blush_160337318.jpg" alt="" width="80" height="80"/></td>
+        <td><?php echo str_replace('_', ' ', $flowername); ?></td>
+        <td>&nbsp;</td>
+        <td><?php echo $amount; ?></td>
+        <td>$</td>
+    </tr>
+<?php endforeach; ?>
+
+
     </table>
     <div id="order_buttons">
         <form method="post">
