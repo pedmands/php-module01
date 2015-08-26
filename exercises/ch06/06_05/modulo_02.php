@@ -1,5 +1,5 @@
 <?php
-$number = 5;
+$number = 8;
 ?>
 <!doctype html>
 <html>

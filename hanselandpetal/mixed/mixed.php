@@ -55,16 +55,24 @@
                 } else { ?>
             <div class="page open">
 
-            <?php while ($row = $result->fetch_assoc()) { ?> <!-- begin while loop -->
-    <div class="section">
+        <?php 
+        $i = 0; //set counter to 0
+        while ($row = $result->fetch_assoc()) { //begin while loop
+        if ($i % 4 === 0) { // generate opening div & ul tags first time through loop ?> 
+        <div class="section">
         <ul class="reset tiles">
+        <?php } //end opening tag generation ?>
             <li> <a href="details.php"> <img src="../images/<?php echo $row['image']; ?>" alt="<?php echo $row['alt']; ?>" height="200" width="200">
                 <h3 class="h4"><?php echo $row['title']; ?></h3>
                 <p class="reset">From $<?php echo $row['price']; ?></p>
                 </a> </li>
+        <?php 
+        $i++; // this is where counter reaches 4
+        if ($i % 4 === 0 ) { //generate closeing tags last time through loop ?>    
         </ul>
-    </div><!-- section --> <?php } //end of while loop ?>
-
+        </div><!-- section --> 
+        <?php } //end if closing tag generation
+            } //end while loop ?>
 </div><!-- page -->
             <?php } // end of else page?> 
         </div><!-- main -->
