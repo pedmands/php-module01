@@ -32,10 +32,17 @@
                 <li><a href="../index.php">Home</a></li>
                 <li><a href="../arrangements.php">Arrangements</a></li>
                 <li><a href="mixed.php">Mixed Arrangements</a></li>
-                <li><?php echo $row['title']; ?></li>
+                <li><?php if (isset($row['title'])){
+                echo $row['title'];
+                }?></li>
             </ul>
         </div>
         <div id="col_1" role="main">
+
+        <?php if ($message) { ?>
+        <h1 class="inline_block">Oops! We gotta prob, Bob...</h1>
+         <p>That arrangement doesn't seem to exist. : /</p>
+        <?php } else { ?>
             <h1 class="inline_block"><?php echo $row['title']; ?></h1>          
             <p class="figure"><img src="../images/<?php echo $row['image']; ?>" alt="<?php echo $row['alt']; ?>" width="200" height="200">
             Price from $<?php echo $row['price']; ?></p>
@@ -45,6 +52,7 @@
         <h3>How to Order</h3>
         <p>All the flowers for our mixed arrangements are carefully selected by <a href="../designers.php">our talented designers</a> using the freshest flowers in season. To discuss your individual requirements, please call Hansel and Petal toll-free on <b>800-555-0199</b>.</p>
         </div>
+        <?php } ?>
     </div>
 <?php include '../includes/footer.php'; ?>
 </div>

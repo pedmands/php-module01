@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors','0');
   $message = '';
   $db = new MySQLi('localhost','phpwebdes','Gco6ign!', 'hanselandpetal');
   if ($db->connect_error) { /* if there is a connection error, */
@@ -50,9 +51,10 @@
                     </div>
                 </div>
             </div>
-            <?php if ($message) {
-                echo "<h2>$message</h2>";
-                } else { ?>
+            <?php if ($message) { ?>
+                <h2 class="inline_block">Well, sunnova...</h1>
+                <p>The site encountered an error, please try loading the page again.</p>
+               <?php } else { ?>
             <div class="page open">
 
         <?php 
