@@ -22,7 +22,8 @@
             <h1 class="inline_block">Build a Bouquet</h1>
             <h2 class="h3 inline_block">From Our Fresh Selection of Flowers</h2>
             <p>Choose the flowers you want, choose a color if available, and choose the number of each for your bouquet.</p>
-            <form action="order.php" method="post" id="bab_form" class="basket_add clearfix">
+<form action="order.php" method="post" id="bab_form" class="basket_add clearfix">
+                
                 <fieldset class="bab_item" id="bab-CL" data-legend="Calla Lilies">
                     <legend class="hidden">Calla Lilies</legend>
                     <img src="images/160_calla_blush_160337318.jpg" alt="" height="160" width="160">
@@ -42,7 +43,8 @@
                         <input value="0" name="qty_Calla_Lilies" id="qtyCL" class="text" type="number">
                     </div>
                     <input type="hidden" name="cost_Calla_Lilies" value="3">
-                </fieldset>
+                </fieldset> <!-- Calla Lilies -->
+
                 <fieldset class="bab_item" id="bab-S" data-legend="Sunflower">
                     <legend class="hidden">Sunflower</legend>
                     <img src="images/160_sunflower_146748795.jpg" alt="" height="160" width="160">
@@ -60,6 +62,7 @@
                     <input type="hidden" name="cost_Sunflowers" value="3">
                     <input type="hidden" name="image_Sunflowers" value="160_sunflower_146748795">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-I" data-legend="Iris">
                     <legend class="hidden">Iris</legend>
                     <img src="images/160_iris_purple_121549009.jpg" alt="" height="160" width="160">
@@ -77,6 +80,7 @@
                     <input type="hidden" name="cost_Iris" value="2">
                     <input type="hidden" name="image_Iris" value="160_iris_purple_121549009">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-PL" data-legend="Peruvian Lily">
                     <legend class="hidden">Peruvian Lily</legend>
                     <img src="images/160_alstromeria_87519333.jpg" alt="" height="160" width="160">
@@ -94,6 +98,7 @@
                     <input type="hidden" name="cost_Peruvian_Lilies" value="2">
                     <input type="hidden" name="image_Peruvian_Lilies" value="160_alstromeria_87519333">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-DN" data-legend="Daffodils (Narcissus)">
                     <legend class="hidden">Daffodils (Narcissus)</legend>
                     <img src="images/160_daffodil_122442732.jpg" alt="" height="160" width="160">
@@ -111,6 +116,7 @@
                     <input type="hidden" name="cost_Daffodils_(Narcissus)" value="2">
                     <input type="hidden" name="image_Daffodils_(Narcissus)" value="160_daffodil_122442732">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-GD" data-legend="Gerbera Daisies">
                     <legend class="hidden">Gerbera Daisies</legend>
                     <img src="images/160_gerbera_purple_146798391.jpg" alt="" height="160" width="160">
@@ -131,6 +137,7 @@
                     </div>
                     <input type="hidden" name="cost_Gerbera_Daisies" value="3">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-DO" data-legend="Dendrobium Orchid">
                     <legend class="hidden">Dendrobium Orchid</legend>
                     <img src="images/160_dendrobium2_152158743.jpg" alt="" height="160" width="160">
@@ -148,6 +155,7 @@
                     <input type="hidden" name="cost_Dendrobium_Orchid" value="4">
                     <input type="hidden" name="image_Dendrobium_Orchid" value="160_dendrobium2_152158743">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-R" data-legend="Roses">
                     <legend class="hidden">Roses</legend>
                     <img src="images/160_rose_pink_112277154.jpg" alt="" height="160" width="160">
@@ -168,6 +176,7 @@
                     </div>
                     <input type="hidden" name="cost_Roses" value="3">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-L" data-legend="Lilies">
                     <legend class="hidden">Lilies</legend>
                     <img src="images/160_lily_pink_160102549.jpg" alt="" height="160" width="160">
@@ -188,6 +197,7 @@
                     </div>
                     <input type="hidden" name="cost_Lilies" value="3">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-T" data-legend="Tulips">
                     <legend class="hidden">Tulips</legend>
                     <img src="images/160_tulip_purple_160910481.jpg" alt="" height="160" width="160">
@@ -208,6 +218,7 @@
                     </div>
                     <input type="hidden" name="cost_Tulips" value="2">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-LC" data-legend="Lilac">
                     <legend class="hidden">Lilac</legend>
                     <img src="images/160_lilac_157045915.jpg" alt="" height="160" width="160">
@@ -225,6 +236,7 @@
                     <input type="hidden" name="cost_Lilac" value="4">
                     <input type="hidden" name="image_Lilac" value="160_lilac_157045915">
                 </fieldset>
+                
                 <fieldset class="bab_item" id="bab-D" data-legend="Daisies">
                     <legend class="hidden">Daisies</legend>
                     <img src="images/160_daisy_white_159207232.jpg" alt="" height="160" width="160">
@@ -242,12 +254,17 @@
                     <input type="hidden" name="cost_Daisies" value="1">
                     <input type="hidden" name="image_Daisies" value="160_daisy_white_159207232">
                 </fieldset>
+                
                 <div id="totals">
                     <h3>Your Bouquet</h3>
-                    <a id="update_price" href="#update-price">Update Price</a> <span id="total_flowers">0</span> <span id="total_cost">0</span> <span>
+                    <a id="update_price" href="#update-price">Update Price</a> 
+                    <span id="total_flowers">0</span> 
+                    <span id="total_cost">0</span> 
+                    <span>
                     <input class="btn checkout" value="Add to Basket" type="submit" name="bouquet">
-                    </span> </div>
-            </form>
+                    </span>
+                </div>
+</form>
         </div>
     </div>
 <?php include 'includes/footer.php'; ?>

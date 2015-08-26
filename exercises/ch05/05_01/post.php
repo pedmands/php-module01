@@ -31,5 +31,12 @@
         <input type="hidden" name="price" id="price" value="3">
     </p>
 </form>
+<pre>
+<?php 
+if (isset($_POST['order'])) {
+    print_r($_POST);
+}
+?>
+</pre>
 </body>
 </html>

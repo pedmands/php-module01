@@ -15,5 +15,9 @@
         <input type="submit" name="search" id="search" value="Search">
     </p>
 </form>
+<?php 
+if (isset($_GET['searchterm'])) { ?>
+<p>You searched for <?php echo $_GET['searchterm']; ?>.</p>
+<?php } ?>
 </body>
 </html>
