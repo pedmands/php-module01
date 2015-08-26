@@ -33,6 +33,11 @@ if (isset($_POST['bouquet'])) {
         'Daisies' => 1
     ];
 } //if
+function getColor($filename) {
+    $parts = explode('_', $filename);
+    return ucfirst($parts[2]);
+}
+$total = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,8 +62,12 @@ if (isset($_POST['bouquet'])) {
 </div>
 <div id="col_1" role="main">
     <h1 class="inline_block">Your Order</h1>
+    <?php if (!isset($quantity) || array_sum($quantity) === 0 ) { ?>
+    <p>Your basket is empty, silly.</p>
+    <?php } else { ?>
     <p>Please check the details of your order.</p>
-    <table id="order_details">
+
+<table id="order_details">
         <tr>
             <th scope="col">&nbsp;</th>
             <th scope="col">Item</th>
@@ -68,18 +77,51 @@ if (isset($_POST['bouquet'])) {
         </tr>
 
 <!-- Building the order: -->
-<?php foreach ($quantity as $flowername => $amount): ?>
-    <tr>
-        <td><img src="images/160_calla_blush_160337318.jpg" alt="" width="80" height="80"/></td>
-        <td><?php echo str_replace('_', ' ', $flowername); ?></td>
-        <td>&nbsp;</td>
-        <td><?php echo $amount; ?></td>
-        <td>$</td>
-    </tr>
-<?php endforeach; ?>
+<?php foreach ($quantity AS $flowername => $amount):
+        if ($amount > 0) :?>
+            <tr>
+                <td>
+                    <img src="images/<?php
+                    if (isset($color[$flowername])) {
+                        echo $color[$flowername];
+                    } else {
+                        echo $image[$flowername];
+                    }
+                    ?>.jpg" alt="" width="80" height="80"/>
+                </td>
+                <td><?php echo str_replace('_', ' ', $flowername); ?></td>
+                <td><?php
+                if (isset($color[$flowername])) {
+                    echo getColor($color[$flowername]);
+                } else {
+                    echo '&nbsp;';
+                }
+                ?></td>
+                <td><?php echo $amount; ?></td>
+                <td>$ <?php echo $cost = $amount * $price[$flowername]; 
+                $total += $cost; ?></td>
+            </tr>
+        <?php 
+        endif;
+        endforeach; ?>
+<tr>
+    <td colspan="4">Shipping</td>
+    <td><?php 
+    if ($total < 75) {
+        echo '$10';
+        $total += 10;
+    } else {
+        echo 'FREE!';
+    }
+    ?></td>
+</tr>
+<tr>
+    <td colspan="4">Total</td>
+    <td>$<?php echo $total; ?></td>
+</tr>
 
+</table>
 
-    </table>
     <div id="order_buttons">
         <form method="post">
             <span>
@@ -89,6 +131,7 @@ if (isset($_POST['bouquet'])) {
             </span>
         </form>
     </div>
+    <?php } ?>
 </div>
 </div>
 <?php include 'includes/footer.php'; ?>
